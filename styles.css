@@ -1,0 +1,756 @@
+/* ================================================
+   CSS CUSTOM PROPERTIES - VS CODE DARK THEME
+   ================================================ */
+:root {
+  /* Core background colors */
+  --vscode-bg: #1e1e1e;
+  --vscode-panel: #252526;
+  --vscode-toolbar: #2d2d30;
+  --vscode-menu-bg: #2d2d30;
+  
+  /* Border and accent colors */
+  --vscode-border: #3c3c3c;
+  --vscode-focus-border: #007acc;
+  
+  /* Text colors */
+  --vscode-foreground: #cccccc;
+  --vscode-foreground-muted: #969696;
+  --vscode-text-link: #3794ff;
+  
+  /* Input and control colors */
+  --vscode-input-bg: #3c3c3c;
+  --vscode-input-border: #464647;
+  --vscode-dropdown-bg: #3c3c3c;
+  
+  /* Button colors */
+  --vscode-button-bg: #0e639c;
+  --vscode-button-hover: #1177bb;
+  
+  /* Interactive element colors */
+  --vscode-selection: #094771;
+  --vscode-menu-hover: #094771;
+}
+
+/* ================================================
+   BASE LAYOUT AND TYPOGRAPHY
+   ================================================ */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  background: var(--vscode-bg);
+  color: var(--vscode-foreground);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", system-ui, "Ubuntu", "Droid Sans", sans-serif;
+  font-size: 13px;
+}
+
+/* ================================================
+   TOOLBAR AND NAVIGATION
+   ================================================ */
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 4px 8px;
+  background: var(--vscode-toolbar);
+  border-bottom: 0.5px solid var(--vscode-border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  height: 35px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.toolbar-section {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-right: 6px;
+}
+
+.toolbar-separator {
+  width: 1px;
+  height: 16px;
+  background: var(--vscode-border);
+  margin: 0 8px;
+}
+
+.title {
+  font-weight: 400;
+  font-size: 13px;
+  color: var(--vscode-foreground);
+  margin-right: 16px;
+  white-space: nowrap;
+}
+
+.spacer {
+  flex: 1;
+}
+
+/* ================================================
+   BUTTONS AND INTERACTIVE CONTROLS
+   ================================================ */
+.btn,
+.vscode-button {
+  background: var(--vscode-input-bg);
+  color: var(--vscode-foreground);
+  border: 1px solid var(--vscode-input-border);
+  border-radius: 2px;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-size: 11px;
+  font-family: inherit;
+  height: 22px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  text-align: center;
+  outline: none;
+  transition: all 0.1s ease;
+}
+
+.btn:hover,
+.vscode-button:hover {
+  background: var(--vscode-menu-hover);
+  border-color: var(--vscode-focus-border);
+}
+
+.btn:focus,
+.vscode-button:focus {
+  outline: none;
+}
+
+/* Button variants */
+.btn.primary {
+  background: var(--vscode-button-bg);
+  border-color: var(--vscode-button-bg);
+  color: white;
+}
+
+.btn.primary:hover {
+  background: var(--vscode-button-hover);
+  border-color: var(--vscode-button-hover);
+}
+
+.btn.ghost {
+  background: transparent;
+  border-color: transparent;
+}
+
+.btn.ghost:hover {
+  background: var(--vscode-menu-hover);
+  border-color: transparent;
+}
+
+/* ================================================
+   FORM CONTROLS (SELECT, INPUT)
+   ================================================ */
+/* VS Code style select dropdown */
+select {
+  background: var(--vscode-dropdown-bg);
+  color: var(--vscode-foreground);
+  border: 1px solid var(--vscode-input-border);
+  border-radius: 2px;
+  padding: 3px 20px 3px 8px;
+  font-size: 11px;
+  font-family: inherit;
+  height: 22px;
+  box-sizing: border-box;
+  cursor: pointer;
+  outline: none;
+  appearance: none;
+  background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="%23cccccc" d="M2 0L0 2h4zm0 5L0 3h4z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 6px center;
+  background-size: 8px;
+}
+
+select:hover {
+  background-color: var(--vscode-menu-hover);
+  border-color: var(--vscode-focus-border);
+}
+
+select:focus {
+  outline: none;
+}
+
+input[type="text"] {
+  background: var(--vscode-input-bg);
+  color: var(--vscode-foreground);
+  border: 1px solid var(--vscode-input-border);
+  border-radius: 2px;
+  padding: 3px 8px;
+  font-size: 11px;
+  font-family: inherit;
+  height: 22px;
+  box-sizing: border-box;
+  outline: none;
+}
+
+input[type="text"]:focus {
+  outline: none;
+}
+
+/* ================================================
+   SETTINGS AND LAYOUT HELPERS
+   ================================================ */
+.row {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.setting-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.setting-label {
+  font-size: 11px;
+  color: var(--vscode-foreground-muted);
+  white-space: nowrap;
+  margin-right: 2px;
+}
+
+/* ================================================
+   DROP ZONES FOR FILE UPLOAD
+   ================================================ */
+#dropzones {
+  display: flex;
+  background: var(--vscode-panel);
+  border-bottom: 0.5px solid var(--vscode-border);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+#dropzones.loaded {
+  opacity: 1;
+}
+
+.drop {
+  border: 0.5px solid var(--vscode-border);
+  border-bottom: none;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background: var(--vscode-bg);
+  position: relative;
+}
+
+.drop.over {
+  border-color: var(--vscode-focus-border);
+  box-shadow: 0 0 0 2px rgba(0, 122, 204, 0.35) inset;
+  background: var(--vscode-selection);
+}
+
+.drop small {
+  color: var(--vscode-foreground-muted);
+  font-size: 11px;
+}
+
+.drop .controls {
+  display: flex;
+  gap: 6px;
+}
+
+/* ================================================
+   DIFF EDITOR CONTAINER
+   ================================================ */
+#diff {
+  position: absolute;
+  inset: 78px 0 0 0; /* Adjusted for topbar height */
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  #diff {
+    inset: 120px 0 0 0;
+  }
+}
+
+/* Compact layout for short viewports */
+@media (max-height: 720px) {
+  #diff {
+    inset: 78px 0 0 0;
+  }
+}
+
+/* ================================================
+   UTILITY STYLES
+   ================================================ */
+.hint {
+  color: var(--vscode-foreground-muted);
+  font-size: 11px;
+}
+
+a {
+  color: var(--vscode-text-link);
+  text-decoration: none;
+}
+
+/* ================================================
+   FULLSCREEN MODE
+   ================================================ */
+.fullscreen-btn {
+  background: transparent;
+  border: 1px solid var(--vscode-input-border);
+  color: var(--vscode-foreground);
+  border-radius: 2px;
+  padding: 3px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  outline: none;
+}
+
+.fullscreen-btn:hover {
+  border-color: var(--vscode-focus-border);
+  background: var(--vscode-menu-hover);
+}
+
+.fullscreen-btn:focus {
+  outline: none;
+}
+
+/* Fullscreen state modifications */
+.fullscreen .topbar,
+.fullscreen #dropzones {
+  display: none;
+}
+
+.fullscreen #diff {
+  inset: 0 !important;
+}
+
+.fullscreen-overlay {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 1000;
+  background: var(--vscode-toolbar);
+  border: 1px solid var(--vscode-border);
+  border-radius: 2px;
+  padding: 4px;
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.fullscreen .fullscreen-overlay {
+  opacity: 1;
+}
+
+.fullscreen .fullscreen-overlay:hover {
+  opacity: 1 !important;
+}
+
+/* ================================================
+   DIFF STATISTICS DISPLAY
+   ================================================ */
+.diff-stats {
+  font-size: 11px;
+  font-weight: bold;
+  color: var(--vscode-foreground-muted);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  white-space: nowrap;
+  margin-left: 8px;
+}
+
+.diff-stats.visible {
+  opacity: 1;
+}
+
+.diff-stats .additions {
+  color: #28a745;
+}
+
+.diff-stats .deletions {
+  color: #d73a49;
+}
+
+/* ================================================
+   ANIMATIONS AND LOADING STATES
+   ================================================ */
+@keyframes shimmer {
+  0% { background-position: -200px 0; }
+  100% { background-position: calc(200px + 100%) 0; }
+}
+
+.loading-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  background-size: 200px 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* ================================================
+   MINIMAP TOGGLE CONTROL
+   ================================================ */
+.minimap-toggle {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  background: var(--vscode-toolbar);
+  border: 1px solid var(--vscode-border);
+  border-radius: 2px;
+  padding: 4px 8px;
+  font-size: 10px;
+  color: var(--vscode-foreground-muted);
+  cursor: pointer;
+  z-index: 100;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.minimap-toggle:hover {
+  opacity: 1;
+  background: var(--vscode-menu-hover);
+}
+
+/* ================================================
+   TOAST NOTIFICATIONS
+   ================================================ */
+.toast {
+  position: fixed;
+  top: 60px;
+  right: 20px;
+  background: var(--vscode-toolbar);
+  border: 1px solid var(--vscode-border);
+  border-radius: 4px;
+  padding: 12px 16px;
+  color: var(--vscode-foreground);
+  font-size: 12px;
+  z-index: 2000;
+  transform: translateX(400px);
+  transition: transform 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  max-width: 300px;
+}
+
+.toast.show {
+  transform: translateX(0);
+}
+
+.toast.success {
+  border-left: 3px solid #28a745;
+}
+
+.toast.error {
+  border-left: 3px solid #d73a49;
+}
+
+.toast.info {
+  border-left: 3px solid var(--vscode-text-link);
+}
+
+/* ================================================
+   MODAL DIALOGS
+   ================================================ */
+/* Share modal */
+.share-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.share-modal.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.share-content {
+  background: var(--vscode-bg);
+  border: 1px solid var(--vscode-border);
+  border-radius: 6px;
+  padding: 24px;
+  max-width: 500px;
+  width: 90%;
+  position: relative;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+}
+
+.share-content h3 {
+  margin: 0 0 16px 0;
+  color: var(--vscode-foreground);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.share-content .close-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: none;
+  border: none;
+  color: var(--vscode-foreground-muted);
+  font-size: 18px;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 2px;
+}
+
+.share-content .close-btn:hover {
+  background: var(--vscode-menu-hover);
+  color: var(--vscode-foreground);
+}
+
+.share-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid var(--vscode-border);
+  border-radius: 4px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.share-option:hover {
+  border-color: var(--vscode-focus-border);
+  background: rgba(0, 122, 204, 0.1);
+}
+
+.share-option.selected {
+  border-color: var(--vscode-focus-border);
+  background: rgba(0, 122, 204, 0.15);
+}
+
+.share-option input[type="radio"] {
+  margin: 2px 0 0 0;
+  accent-color: var(--vscode-focus-border);
+}
+
+.share-option-content {
+  flex: 1;
+}
+
+.share-option-title {
+  font-weight: 500;
+  color: var(--vscode-foreground);
+  margin-bottom: 4px;
+  font-size: 13px;
+}
+
+.share-option-description {
+  color: var(--vscode-foreground-muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.share-option-info {
+  margin-top: 8px;
+  padding: 8px;
+  background: var(--vscode-input-bg);
+  border-radius: 3px;
+  font-size: 11px;
+  color: var(--vscode-foreground-muted);
+}
+
+.share-option-warning {
+  color: #f48771;
+  background: rgba(244, 135, 113, 0.1);
+}
+
+.share-option-success {
+  color: #89d185;
+  background: rgba(137, 209, 133, 0.1);
+}
+
+.share-buttons {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--vscode-border);
+}
+
+.share-buttons .btn {
+  min-width: 80px;
+}
+
+.url-preview {
+  margin-top: 8px;
+  padding: 8px;
+  background: var(--vscode-input-bg);
+  border: 1px solid var(--vscode-input-border);
+  border-radius: 3px;
+  font-family: monospace;
+  font-size: 10px;
+  color: var(--vscode-foreground-muted);
+  word-break: break-all;
+  max-height: 60px;
+  overflow-y: auto;
+}
+
+/* Help modal */
+.help-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.help-modal.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.help-content {
+  background: var(--vscode-bg);
+  border: 1px solid var(--vscode-border);
+  border-radius: 6px;
+  padding: 24px;
+  max-width: 500px;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.help-content h3 {
+  margin: 0 0 16px 0;
+  color: var(--vscode-foreground);
+  font-size: 16px;
+}
+
+.help-content .shortcut {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--vscode-border);
+  font-size: 12px;
+}
+
+.help-content .shortcut:last-child {
+  border-bottom: none;
+}
+
+.help-content .shortcut .key {
+  background: var(--vscode-input-bg);
+  border: 1px solid var(--vscode-input-border);
+  border-radius: 3px;
+  padding: 2px 6px;
+  font-family: monospace;
+  font-size: 10px;
+}
+
+.help-content .close-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: none;
+  border: none;
+  color: var(--vscode-foreground-muted);
+  font-size: 18px;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 2px;
+}
+
+.help-content .close-btn:hover {
+  background: var(--vscode-menu-hover);
+  color: var(--vscode-foreground);
+}
+
+/* Edit mode confirmation modal */
+.edit-confirmation-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.edit-confirmation-modal.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.edit-confirmation-content {
+  background: var(--vscode-bg);
+  border: 1px solid var(--vscode-border);
+  border-radius: 6px;
+  padding: 24px;
+  max-width: 480px;
+  position: relative;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+}
+
+.edit-confirmation-content h3 {
+  margin: 0 0 12px 0;
+  color: var(--vscode-foreground);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.edit-confirmation-content p {
+  margin: 0 0 20px 0;
+  color: var(--vscode-foreground-muted);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.edit-confirmation-buttons {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.edit-confirmation-buttons .btn {
+  min-width: 80px;
+}
+
+/* ================================================
+   MONACO EDITOR CUSTOMIZATIONS
+   ================================================ */
+/* Hide diff editor action buttons in gutter */
+.monaco-diff-editor
+  .gutter
+  .gutterItem
+  .buttons
+  .monaco-toolbar
+  .monaco-action-bar
+  .actions-container
+  .action-item
+  .action-label {
+  display: none;
+}
