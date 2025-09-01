@@ -1,44 +1,88 @@
-# QuickDiff — Offline & Instant Code Compare
+# QuickDiff
 
-A minimal Progressive Web App (PWA) for comparing code with instant diff visualization, powered by Monaco Editor.
+**The zero-server diff tool — runs 100% in your browser, nothing ever leaves your machine.**
 
-## Features
+👉 Live demo: [quickdiff.cloudsbyme.workers.dev](https://quickdiff.cloudsbyme.workers.dev)
 
-- **Offline-first**: Works without internet connection after first load
-- **Instant comparison**: Real-time side-by-side diff visualization
-- **Monaco Editor**: VS Code-like editing experience
-- **Keyboard shortcuts**: Efficient workflow with hotkeys
-- **Export/Import**: Save and load diff files
-- **Multiple languages**: Syntax highlighting for various programming languages
+---
 
-## PWA Installation
+## 🔐 Why QuickDiff?
 
-1. Open the app in a modern browser
-2. Look for the "Install" or "Add to Home Screen" option
-3. The app will work offline after installation
+- **Zero server dependency** — nothing is uploaded, ever.  
+- **Works offline** — install as a PWA and use it anywhere.  
+- **Instant** — no network roundtrips = no waiting.  
 
-## Usage
+Perfect for developers who want speed, portability, and peace of mind.
 
-1. Paste or type code in the left and right panels
-2. See differences highlighted automatically
-3. Use toolbar buttons for formatting, swapping, clearing, etc.
-4. Press `?` for keyboard shortcuts
+---
 
-## Files
+## ✨ Features
 
-- `index.html` - Main application file
-- `manifest.json` - PWA manifest for installation
-- `sw.js` - Service worker for offline functionality
+- **Side-by-side or inline view** — switch layouts instantly.
+- **Whitespace handling** — choose whether to ignore or respect whitespace.
+- **Auto language detection** — or pick manually from a searchable language menu.
+- **Keyboard shortcuts** — VS Code-style (format, swap, share, download, fullscreen, etc.).
+- **File support**  
+  - Drag & drop, paste, or load files directly.  
+  - Import/export `.qdiff` bundles.  
+  - Download unified diff `.patch` files.
+- **Sharing** — generate sharable URLs with embedded diff data.
+- **Stats** — live additions/deletions counter in the toolbar.
+- **Customization** — toggle minimap, wrapping, read-only/edit modes.
+- **Offline-ready** — PWA with service worker support.
 
-## Keyboard Shortcuts
+---
 
-- `?` - Show help
-- `Shift+Alt+F` - Format code
-- `Ctrl+Shift+S` - Share
-- `Ctrl+Shift+D` - Download patch
-- `Ctrl+Shift+X` - Swap sides
-- `Ctrl+Shift+C` - Clear both sides
+## 📸 Demo
 
-## Development
+![QuickDiff demo screenshot](demo-screenshot.png)
 
-This is a single-file application with minimal dependencies. The Monaco Editor is loaded from CDN and cached for offline use.
+---
+
+## 🚀 Getting Started
+
+You don’t need to install anything. Just open the [live demo](https://quickdiff.cloudsbyme.workers.dev) and start comparing.
+
+If you’d like to self-host:
+
+```bash
+git clone https://github.com/thaqiif/QuickDiff.git
+cd QuickDiff
+# Serve the `public/` folder with any static server
+npx serve public
+```
+
+Then open `http://localhost:3000` in your browser.
+
+---
+
+## 🎮 Usage
+
+1. Load or paste two files/snippets into **Left (Original)** and **Right (Modified)** panes.
+2. Adjust layout, wrapping, and whitespace handling from the toolbar.
+3. Use keyboard shortcuts like:
+   - `Ctrl+Shift+X` → Swap sides
+   - `Shift+Alt+F` → Format both sides
+   - `Ctrl+Shift+S` → Share via URL
+   - `Ctrl+Shift+D` → Download patch
+   - `?` → Show help modal
+4. Export or share your diff when ready.
+
+---
+
+## 🛠 Tech Stack
+
+- [Monaco Editor](https://microsoft.github.io/monaco-editor/) (the core of VS Code)
+- Vanilla JS + CSS (no heavy frameworks)
+- [Cloudflare Workers](https://developers.cloudflare.com/workers/) for hosting
+- PWA for offline support
+
+---
+
+## 🤝 Contributing
+
+Pull requests are welcome!  
+If you’d like to suggest features, report bugs, or improve docs:
+
+- Open an [issue](https://github.com/thaqiif/QuickDiff/issues)
+- Fork the repo and submit a PR
