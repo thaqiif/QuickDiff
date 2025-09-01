@@ -1,0 +1,16 @@
+{
+  "name": "quickdiff",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev --local",
+    "deploy": "wrangler deploy"
+  },
+  "dependencies": {
+    "hono": "4.9.5"
+  },
+  "devDependencies": {
+    "wrangler": "4.33.1"
+  }
+}

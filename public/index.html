@@ -1,47 +1,30 @@
+<!-- Moved to public directory for Cloudflare Workers static site bucket -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>QuickDiff — Offline & Instant Code Compare</title>
-    
-    <!-- PWA Meta Tags -->
     <meta name="description" content="Offline code comparison tool with instant diff visualization" />
     <meta name="theme-color" content="#007acc" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="QuickDiff" />
-    
-    <!-- PWA Manifest -->
     <link rel="manifest" href="./manifest.json" />
-    
-    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="quickdiff.svg" />
-
-    <!-- External Stylesheets -->
     <link rel="stylesheet" href="styles.css" />
-    
-    <!-- Monaco Editor via CDN -->
     <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.52.2/min/vs/loader.min.js"></script>
   </head>
   <body>
-    <!-- ================================================
-         MAIN APPLICATION STRUCTURE
-         ================================================ -->
-    
-    <!-- Toolbar with controls and settings -->
+    <!-- Original content preserved -->
+    <!-- ================================================ -->
     <div class="topbar">
       <div class="title">QuickDiff</div>
-      
-      <!-- File operation controls -->
       <div class="toolbar-section">
         <button class="btn" id="swapBtn" title="Swap left/right">⇄ Swap</button>
         <button class="btn ghost" id="clearBtn" title="Clear both">✕ Clear</button>
       </div>
-
       <div class="toolbar-separator"></div>
-
-      <!-- Display and behavior settings -->
       <div class="toolbar-section">
         <div class="setting-group">
           <span class="setting-label">Layout:</span>
@@ -51,7 +34,6 @@
           </select>
         </div>
       </div>
-
       <div class="toolbar-section">
         <div class="setting-group">
           <span class="setting-label">Whitespace:</span>
@@ -61,7 +43,6 @@
           </select>
         </div>
       </div>
-
       <div class="toolbar-section">
         <div class="setting-group">
           <span class="setting-label">Wrap:</span>
@@ -71,7 +52,6 @@
           </select>
         </div>
       </div>
-
       <div class="toolbar-section">
         <div class="setting-group">
           <span class="setting-label">Mode:</span>
@@ -81,22 +61,16 @@
           </select>
         </div>
       </div>
-
-      <!-- Diff statistics display -->
       <div class="diff-stats" id="diffStats">
         <span class="additions">+0</span> <span class="deletions">-0</span>
       </div>
-
       <div class="spacer"></div>
-
-      <!-- Language and utility controls -->
       <div class="toolbar-section">
         <div class="setting-group">
           <span class="setting-label">Language:</span>
           <button class="btn" id="languageBtn" title="Change Language Mode">JavaScript</button>
         </div>
       </div>
-
       <div class="toolbar-section">
         <button class="btn" id="importBtn" title="Import .qdiff file">📁 Import</button>
         <button class="btn" id="formatBtn" title="Format both sides">⚡ Format</button>
@@ -104,16 +78,12 @@
         <button class="btn" id="downloadBtn" title="Download as patch">💾 Patch</button>
         <button class="btn ghost" id="helpBtn" title="Keyboard shortcuts">❓</button>
       </div>
-
-      <!-- Fullscreen toggle -->
       <div class="toolbar-section">
         <button class="fullscreen-btn" id="fullscreenBtn" title="Toggle fullscreen mode">
           <span id="fullscreenIcon">⛶</span>
         </button>
       </div>
     </div>
-
-    <!-- File drop zones for drag & drop and manual file loading -->
     <div id="dropzones">
       <div class="drop" id="dropL">
         <div>
@@ -126,7 +96,6 @@
           <button class="btn" id="pasteL">Paste</button>
         </div>
       </div>
-
       <div class="drop" id="dropR">
         <div>
           <b>Right (Modified)</b><br />
@@ -139,127 +108,58 @@
         </div>
       </div>
     </div>
-
-    <!-- Monaco diff editor container -->
     <div id="diff"></div>
-
-    <!-- Floating controls -->
-    <div class="minimap-toggle" id="minimapToggle" title="Toggle mini-map">
-      📍 Map
-    </div>
-
-    <!-- Fullscreen exit button overlay -->
+    <div class="minimap-toggle" id="minimapToggle" title="Toggle mini-map">📍 Map</div>
     <div class="fullscreen-overlay">
-      <button
-        class="fullscreen-btn"
-        id="exitFullscreenBtn"
-        title="Exit fullscreen mode"
-      >
+      <button class="fullscreen-btn" id="exitFullscreenBtn" title="Exit fullscreen mode">
         <span>✕</span>
       </button>
     </div>
-
-    <!-- ================================================
-         MODAL DIALOGS
-         ================================================ -->
-    
-    <!-- Share modal with URL and export options -->
     <div class="share-modal" id="shareModal">
       <div class="share-content">
         <button class="close-btn" id="closeShareBtn">✕</button>
         <h3>🔗 Share Diff</h3>
-        
         <div class="share-option" id="urlOption">
           <input type="radio" name="shareMethod" value="url" id="urlRadio" checked>
           <div class="share-option-content">
             <div class="share-option-title">Share via URL</div>
-            <div class="share-option-description">
-              Generate a shareable link that contains your diff data. Recipients can view immediately by clicking the link.
-            </div>
-            <div class="share-option-info" id="urlInfo">
-              Calculating size...
-            </div>
+            <div class="share-option-description">Generate a shareable link that contains your diff data. Recipients can view immediately by clicking the link.</div>
+            <div class="share-option-info" id="urlInfo">Calculating size...</div>
             <div class="url-preview" id="urlPreview" style="display: none;"></div>
           </div>
         </div>
-        
         <div class="share-option" id="exportOption">
           <input type="radio" name="shareMethod" value="export" id="exportRadio">
           <div class="share-option-content">
             <div class="share-option-title">Export as File</div>
-            <div class="share-option-description">
-              Download a .qdiff file that can be imported later. Useful for large diffs or offline sharing.
-            </div>
-            <div class="share-option-info share-option-success">
-              ✓ No size limits • Works offline • Can be version controlled
-            </div>
+            <div class="share-option-description">Download a .qdiff file that can be imported later. Useful for large diffs or offline sharing.</div>
+            <div class="share-option-info share-option-success">✓ No size limits • Works offline • Can be version controlled</div>
           </div>
         </div>
-        
         <div class="share-buttons">
           <button class="btn ghost" id="cancelShareBtn">Cancel</button>
           <button class="btn primary" id="proceedShareBtn">Copy URL</button>
         </div>
       </div>
     </div>
-    
-    <!-- Help and keyboard shortcuts modal -->
     <div class="help-modal" id="helpModal">
       <div class="help-content">
         <button class="close-btn" id="closeHelpBtn">✕</button>
         <h3>⌨️ Keyboard Shortcuts</h3>
-        <div class="shortcut">
-          <span>Toggle fullscreen</span>
-          <span class="key">F11</span>
-        </div>
-        <div class="shortcut">
-          <span>Toggle fullscreen</span>
-          <span class="key">Ctrl+Shift+F</span>
-        </div>
-        <div class="shortcut">
-          <span>Exit fullscreen</span>
-          <span class="key">Esc</span>
-        </div>
-        <div class="shortcut">
-          <span>Format document</span>
-          <span class="key">Shift+Alt+F</span>
-        </div>
-        <div class="shortcut">
-          <span>Find</span>
-          <span class="key">Ctrl+F</span>
-        </div>
-        <div class="shortcut">
-          <span>Replace</span>
-          <span class="key">Ctrl+H</span>
-        </div>
-        <div class="shortcut">
-          <span>Go to line</span>
-          <span class="key">Ctrl+G</span>
-        </div>
-        <div class="shortcut">
-          <span>Select all</span>
-          <span class="key">Ctrl+A</span>
-        </div>
-        <div class="shortcut">
-          <span>Toggle comment</span>
-          <span class="key">Ctrl+/</span>
-        </div>
-        <div class="shortcut">
-          <span>Zoom in</span>
-          <span class="key">Ctrl++</span>
-        </div>
-        <div class="shortcut">
-          <span>Zoom out</span>
-          <span class="key">Ctrl+-</span>
-        </div>
-        <div class="shortcut">
-          <span>Show this help</span>
-          <span class="key">?</span>
-        </div>
+        <div class="shortcut"><span>Toggle fullscreen</span><span class="key">F11</span></div>
+        <div class="shortcut"><span>Toggle fullscreen</span><span class="key">Ctrl+Shift+F</span></div>
+        <div class="shortcut"><span>Exit fullscreen</span><span class="key">Esc</span></div>
+        <div class="shortcut"><span>Format document</span><span class="key">Shift+Alt+F</span></div>
+        <div class="shortcut"><span>Find</span><span class="key">Ctrl+F</span></div>
+        <div class="shortcut"><span>Replace</span><span class="key">Ctrl+H</span></div>
+        <div class="shortcut"><span>Go to line</span><span class="key">Ctrl+G</span></div>
+        <div class="shortcut"><span>Select all</span><span class="key">Ctrl+A</span></div>
+        <div class="shortcut"><span>Toggle comment</span><span class="key">Ctrl+/</span></div>
+        <div class="shortcut"><span>Zoom in</span><span class="key">Ctrl++</span></div>
+        <div class="shortcut"><span>Zoom out</span><span class="key">Ctrl+-</span></div>
+        <div class="shortcut"><span>Show this help</span><span class="key">?</span></div>
       </div>
     </div>
-
-    <!-- Edit mode confirmation modal for shared links -->
     <div class="edit-confirmation-modal" id="editConfirmationModal">
       <div class="edit-confirmation-content">
         <h3>🔓 Enable Edit Mode</h3>
@@ -270,8 +170,6 @@
         </div>
       </div>
     </div>
-
-    <!-- External JavaScript -->
     <script src="script.js"></script>
   </body>
 </html>

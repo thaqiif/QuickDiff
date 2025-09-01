@@ -2,7 +2,7 @@
   "name": "QuickDiff — Offline & Instant Code Compare",
   "short_name": "QuickDiff",
   "description": "Offline code comparison tool with instant diff visualization",
-  "start_url": "./index.html",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#1e1e1e",
   "theme_color": "#007acc",
