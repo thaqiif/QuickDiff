@@ -2,7 +2,7 @@
 
 **The zero-server diff tool — runs 100% in your browser, nothing ever leaves your machine.**
 
-👉 Live demo: [quickdiff.cloudsbyme.workers.dev](https://quickdiff.cloudsbyme.workers.dev)
+👉 Live demo: [https://quickdiff.dev](https://https://quickdiff.dev)
 
 ---
 
@@ -41,7 +41,7 @@ Perfect for developers who want speed, portability, and peace of mind.
 
 ## 🚀 Getting Started
 
-You don’t need to install anything. Just open the [live demo](https://quickdiff.cloudsbyme.workers.dev) and start comparing.
+You don’t need to install anything. Just open the [live demo](https://https://quickdiff.dev) and start comparing.
 
 If you’d like to self-host:
 
