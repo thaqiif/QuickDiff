@@ -1,18 +1,54 @@
 {
-  "name": "QuickDiff — Offline & Instant Code Compare",
+  "name": "QuickDiff - Offline & Instant Code Compare",
   "short_name": "QuickDiff",
   "description": "Offline code comparison tool with instant diff visualization",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#1e1e1e",
-  "theme_color": "#007acc",
+  "theme_color": "#1e1e1e",
   "orientation": "any",
   "icons": [
     {
-      "src": "./quickdiff.svg",
+      "purpose": "maskable",
+      "sizes": "48x48",
+      "src": "icon/quickdiff_icon_x48.png",
+      "type": "image/png"
+    },
+    {
+      "purpose": "maskable",
+      "sizes": "72x72",
+      "src": "icon/quickdiff_icon_x72.png",
+      "type": "image/png"
+    },
+    {
+      "purpose": "maskable",
+      "sizes": "96x96",
+      "src": "icon/quickdiff_icon_x96.png",
+      "type": "image/png"
+    },
+    {
+      "purpose": "maskable",
+      "sizes": "128x128",
+      "src": "icon/quickdiff_icon_x128.png",
+      "type": "image/png"
+    },
+    {
+      "purpose": "maskable",
+      "sizes": "192x192",
+      "src": "icon/quickdiff_icon_x192.png",
+      "type": "image/png"
+    },
+    {
+      "purpose": "maskable",
+      "sizes": "384x384",
+      "src": "icon/quickdiff_icon_x384.png",
+      "type": "image/png"
+    },
+    {
+      "purpose": "maskable",
       "sizes": "512x512",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "src": "icon/quickdiff_icon_x512.png",
+      "type": "image/png"
     }
   ],
   "categories": ["developer", "productivity", "utilities"],
