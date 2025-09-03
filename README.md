@@ -1,88 +1,65 @@
-# QuickDiff
+# QuickDiff 🔍
 
-**The zero-server diff tool — runs 100% in your browser, nothing ever leaves your machine.**
+A side-by-side code comparison tool I built because I got tired of manually comparing JSON files and switching between tabs to spot differences.
 
 👉 Live demo: [https://quickdiff.dev](https://quickdiff.dev)
 
----
 
-## 🔐 Why QuickDiff?
+## What it does
 
-- **Zero server dependency** — nothing is uploaded, ever.  
-- **Works offline** — install as a PWA and use it anywhere.  
-- **Instant** — no network roundtrips = no waiting.  
+- Compare code/text files side-by-side with Monaco Editor (the same engine VS Code uses)
+- Works completely offline - no uploading files to random servers
+- Auto-detects programming languages for syntax highlighting
+- Share comparisons via URL without needing a backend
+- Export/import comparisons as .qdiff files
+- Format code with built-in prettifiers
+- Fullscreen mode for better viewing
 
-Perfect for developers who want speed, portability, and peace of mind.
+## Why I built this 🤷‍♂️
 
----
+Two weeks ago I was comparing some JSON API responses and it was really tedious. Existing tools either required uploading sensitive files to servers or just felt clunky. I wanted something that felt like VS Code but focused on diffs.
 
-## ✨ Features
+Started as a "let me see if I can build this" weekend project and turned into something I actually use daily now.
 
-- **Side-by-side or inline view** — switch layouts instantly.
-- **Whitespace handling** — choose whether to ignore or respect whitespace.
-- **Auto language detection** — or pick manually from a searchable language menu.
-- **Keyboard shortcuts** — VS Code-style (format, swap, share, download, fullscreen, etc.).
-- **File support**  
-  - Drag & drop, paste, or load files directly.  
-  - Import/export `.qdiff` bundles.  
-  - Download unified diff `.patch` files.
-- **Sharing** — generate sharable URLs with embedded diff data.
-- **Stats** — live additions/deletions counter in the toolbar.
-- **Customization** — toggle minimap, wrapping, read-only/edit modes.
-- **Offline-ready** — PWA with service worker support.
+## Getting started
 
----
+Just open it in your browser - no setup needed. Drag files into the left/right panels or paste content directly.
 
-## 📸 Demo
-
-![QuickDiff demo screenshot](demo-screenshot.png)
-
----
-
-## 🚀 Getting Started
-
-You don’t need to install anything. Just open the [live demo](https://https://quickdiff.dev) and start comparing.
-
-If you’d like to self-host:
-
+For development:
 ```bash
-git clone https://github.com/thaqiif/QuickDiff.git
-cd QuickDiff
-# Serve the `public/` folder with any static server
-npx serve public
+npm install
+npm run dev
 ```
 
-Then open `http://localhost:3000` in your browser.
+## Features
 
----
+- **File handling**: Drag & drop, file picker, or paste from clipboard
+- **Language support**: JavaScript, Python, JSON, SQL, HTML, CSS, and more with auto-detection
+- **Sharing**: Generate URLs for quick sharing (data gets compressed into the URL)
+- **Export**: Save as .qdiff files for larger comparisons
+- **Customization**: Toggle whitespace handling, word wrap, layout modes
+- **Keyboard shortcuts**: F11 for fullscreen, Shift+Alt+F to format, etc.
+- **PWA**: Install as a desktop app, works offline
 
-## 🎮 Usage
+## Tech stack
 
-1. Load or paste two files/snippets into **Left (Original)** and **Right (Modified)** panes.
-2. Adjust layout, wrapping, and whitespace handling from the toolbar.
-3. Use keyboard shortcuts like:
-   - `Ctrl+Shift+X` → Swap sides
-   - `Shift+Alt+F` → Format both sides
-   - `Ctrl+Shift+S` → Share via URL
-   - `Ctrl+Shift+D` → Download patch
-   - `?` → Show help modal
-4. Export or share your diff when ready.
+- Monaco Editor for the diff engine
+- Vanilla JavaScript (no framework needed)
+- Cloudflare Workers for hosting
+- Service Worker for offline functionality
 
----
+## How sharing works 🔗
 
-## 🛠 Tech Stack
+The complete content from both editors gets encoded into the URL itself - no server needed. It's basically shoving your entire comparison into the URL bar (don't worry, it's compressed). For larger files that would make URLs stupidly long, you can export as .qdiff files instead. When someone opens a shared link, it loads in read-only mode to prevent accidental "oops I deleted everything" moments.
 
-- [Monaco Editor](https://microsoft.github.io/monaco-editor/) (the core of VS Code)
-- Vanilla JS + CSS (no heavy frameworks)
-- [Cloudflare Workers](https://developers.cloudflare.com/workers/) for hosting
-- PWA for offline support
+## Deployment
 
----
+```bash
+npm run deploy
+```
 
-## 🤝 Contributing
+Deploys to Cloudflare Workers. The `wrangler.toml` config handles static asset serving.
 
-Pull requests are welcome!  
-If you’d like to suggest features, report bugs, or improve docs:
+## License
 
-- Open an [issue](https://github.com/thaqiif/QuickDiff/issues)
-- Fork the repo and submit a PR
+No license file yet - need to add one.
