@@ -2,7 +2,7 @@
 
 **The zero-server diff tool — runs 100% in your browser, nothing ever leaves your machine.**
 
-👉 Live demo: [https://quickdiff.dev](https://https://quickdiff.dev)
+👉 Live demo: [https://quickdiff.dev](https://quickdiff.dev)
 
 ---
 
